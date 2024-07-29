@@ -52,7 +52,7 @@ export const deleteStudentController = async (req, res, next) => {
 	res.status(204).send();
 };
 
-export const upsertStudentController = async (req, res) => {
+export const upsertStudentController = async (req, res, next) => {
 	const { studentId } = req.params;
 
 	const result = await updateStudent(studentId, req.body, { upsert: true });
@@ -67,6 +67,23 @@ export const upsertStudentController = async (req, res) => {
 	res.status(status).json({
 		status,
 		message: `Successfully upserted a student!`,
+		data: result.student,
+	});
+};
+
+export const patchStudentController = async (req, res, next) => {
+	const { studentId } = req.params;
+
+	const result = await updateStudent(studentId, req.body);
+
+	if (!result) {
+		next(createHttpError(404, 'Student not found'));
+		return;
+	}
+
+	res.status(200).json({
+		status: 200,
+		message: `Successfully patched a student!`,
 		data: result.student,
 	});
 };
