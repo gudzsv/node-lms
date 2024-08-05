@@ -21,7 +21,7 @@ router.get('/students', ctrlWrapper(getStudentsController));
 
 router.get(
 	'/students/:studentId',
-	isValidId,
+	isValidId('studentId'),
 	ctrlWrapper(getStudentByIdController)
 );
 
@@ -33,19 +33,19 @@ router.post(
 
 router.delete(
 	'/students/:studentId',
-	isValidId,
+	isValidId('studentId'),
 	ctrlWrapper(deleteStudentController)
 );
 
 router.put(
 	'/students/:studentId',
-	isValidId,
+	isValidId('studentId'),
 	ctrlWrapper(upsertStudentController)
 );
 
 router.patch(
 	'/students/:studentId',
-	isValidId,
+	isValidId('studentId'),
 	validateBody(updateStudentSchema),
 	ctrlWrapper(patchStudentController)
 );
