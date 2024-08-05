@@ -1,7 +1,11 @@
 import Joi from 'joi';
 
 export const createStudentSchema = Joi.object({
-	name: Joi.string().min(3).max(30).required(),
+	name: Joi.string().min(3).max(30).required().messages({
+		'any.required': '{{#label}} is required',
+		'string.min': 'Min string length is not achieved, {{#limit}} requires',
+		'string.max': 'Man string length is not achieved, {{#limit}} requires',
+	}),
 	email: Joi.string().email().required(),
 	age: Joi.number().integer().min(6).max(16).required(),
 	gender: Joi.string().valid('male', 'female', 'other').required(),
