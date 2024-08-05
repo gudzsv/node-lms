@@ -9,7 +9,11 @@ export const createStudentSchema = Joi.object({
 	email: Joi.string().email().required(),
 	age: Joi.number().integer().min(6).max(16).required(),
 	gender: Joi.string().valid('male', 'female', 'other').required(),
-	avgMark: Joi.number().min(2).max(12).required(),
+	avgMark: Joi.number().min(2).max(12).required().messages({
+		'number.base': 'Must be a number',
+		'number.min': 'Min number length is not achieved, {{#limit}} requires',
+		'number.max': 'Man number length is not achieved, {{#limit}} requires',
+	}),
 	onDuty: Joi.boolean(),
 });
 
