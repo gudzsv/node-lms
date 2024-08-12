@@ -31,7 +31,7 @@ export const getAllStudents = async ({
 	}
 
 	if (filter.minAvgMark) {
-		studentsQuery.where('avgMark').gte(filter(maxAvgMark));
+		studentsQuery.where('avgMark').gte(filter.maxAvgMark);
 	}
 
 	const [studentsCount, students] = await Promise.all([
