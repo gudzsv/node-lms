@@ -22,7 +22,11 @@ const router = Router();
 
 router.use(authenticate);
 
-router.get('/', ctrlWrapper(getStudentsController));
+router.get(
+	'/',
+	checkRoles(ROLES.TEACHER, ROLES.PARENT),
+	ctrlWrapper(getStudentsController)
+);
 
 router.get(
 	'/:studentId',
