@@ -15,6 +15,7 @@ export const createStudentSchema = Joi.object({
 		'number.max': 'Man number length is not achieved, {{#limit}} requires',
 	}),
 	onDuty: Joi.boolean(),
+	parentId: Joi.string().required(),
 });
 
 export const updateStudentSchema = Joi.object({
