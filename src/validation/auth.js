@@ -15,3 +15,10 @@ export const loginUserSchema = Joi.object({
 	email: Joi.string().email().required(),
 	password: Joi.string().required(),
 });
+
+export const requestResetEmailSchema = Joi.object({
+	email: Joi.string()
+		.email()
+		.required()
+		.messages({ 'string.base': 'Must be a string' }),
+});
